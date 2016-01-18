@@ -33,10 +33,7 @@ class DBWrapper {
         }
         database.executeStatements(createSQL)
     }
-    
-    
 }
-
 
 
 class FMDBTripDao : TripDao {

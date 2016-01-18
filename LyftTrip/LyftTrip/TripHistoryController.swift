@@ -15,7 +15,6 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
     var logLocation:Bool = false
     var manager:CLLocationManager?
     var tripManager:TripManager?
-    var lastAuthorizationStatus:CLAuthorizationStatus?
     var dbWrapper = DBWrapper(path: DBWrapper.pathForDatabase())
     var tripDao:TripDao?
     
@@ -126,14 +125,10 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
     }
     
     func setupLocationManager() {
-        
-        let currentAuthorizationStatus = CLLocationManager.authorizationStatus()
-        
         if let manager = manager  {
             switch CLLocationManager.authorizationStatus() {
             case .NotDetermined:
                 manager.requestAlwaysAuthorization()
-//                manager.startUpdatingLocation()
             case .Denied:
                 showLocationWarning()
             case .Restricted:
@@ -143,7 +138,6 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
                 checkLoggingSwitch()
             }
         }
-        lastAuthorizationStatus = currentAuthorizationStatus
     }
     
     func applicationEnteredForeground() {

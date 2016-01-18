@@ -16,6 +16,7 @@ protocol TripDao {
 }
 
 
+/* Was used for preliminary testing */
 class TripMemoryDao : TripDao {
     static var idCounter:Int64 = 0
     

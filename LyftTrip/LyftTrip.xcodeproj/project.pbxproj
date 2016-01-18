@@ -11,14 +11,12 @@
 		D76594D71C4B485000A10400 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76594D61C4B485000A10400 /* AppDelegate.swift */; };
 		D76594D91C4B485000A10400 /* TripHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76594D81C4B485000A10400 /* TripHistoryController.swift */; };
 		D76594DC1C4B485000A10400 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D76594DA1C4B485000A10400 /* Main.storyboard */; };
-		D76594DF1C4B485000A10400 /* LyftTrip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D76594DD1C4B485000A10400 /* LyftTrip.xcdatamodeld */; };
 		D76594E11C4B485000A10400 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76594E01C4B485000A10400 /* Assets.xcassets */; };
 		D76594E41C4B485000A10400 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D76594E21C4B485000A10400 /* LaunchScreen.storyboard */; };
 		D76594EF1C4B485000A10400 /* LyftTripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76594EE1C4B485000A10400 /* LyftTripTests.swift */; };
 		D76595001C4B5EAA00A10400 /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76594FC1C4B5EAA00A10400 /* TripDetail.swift */; };
 		D76595021C4B5EAA00A10400 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76594FE1C4B5EAA00A10400 /* Trip.swift */; };
 		D76595041C4B5F7E00A10400 /* TripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76595031C4B5F7E00A10400 /* TripTests.swift */; };
-		D76595061C4B660400A10400 /* TripSQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76595051C4B660400A10400 /* TripSQL.swift */; };
 		D76595081C4B734D00A10400 /* TripDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76595071C4B734D00A10400 /* TripDao.swift */; };
 		D765950C1C4C134200A10400 /* FMDBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D765950B1C4C134200A10400 /* FMDBUtil.swift */; };
 		D765950E1C4C483800A10400 /* TripDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D765950D1C4C483800A10400 /* TripDaoTests.swift */; };
@@ -48,7 +46,6 @@
 		D76594D61C4B485000A10400 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D76594D81C4B485000A10400 /* TripHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHistoryController.swift; sourceTree = "<group>"; };
 		D76594DB1C4B485000A10400 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D76594DE1C4B485000A10400 /* LyftTrip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LyftTrip.xcdatamodel; sourceTree = "<group>"; };
 		D76594E01C4B485000A10400 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D76594E31C4B485000A10400 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D76594E51C4B485000A10400 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,7 +55,6 @@
 		D76594FC1C4B5EAA00A10400 /* TripDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
 		D76594FE1C4B5EAA00A10400 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		D76595031C4B5F7E00A10400 /* TripTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTests.swift; sourceTree = "<group>"; };
-		D76595051C4B660400A10400 /* TripSQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSQL.swift; sourceTree = "<group>"; };
 		D76595071C4B734D00A10400 /* TripDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripDao.swift; path = ../TripDao.swift; sourceTree = "<group>"; };
 		D76595091C4B738F00A10400 /* LyftTrip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LyftTrip-Bridging-Header.h"; sourceTree = "<group>"; };
 		D765950B1C4C134200A10400 /* FMDBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDBUtil.swift; sourceTree = "<group>"; };
@@ -119,19 +115,17 @@
 			isa = PBXGroup;
 			children = (
 				D76595091C4B738F00A10400 /* LyftTrip-Bridging-Header.h */,
-				D76594D61C4B485000A10400 /* AppDelegate.swift */,
-				D76595111C4C686000A10400 /* Controllers */,
 				D76594DA1C4B485000A10400 /* Main.storyboard */,
 				D76594E21C4B485000A10400 /* LaunchScreen.storyboard */,
 				D76594E01C4B485000A10400 /* Assets.xcassets */,
 				D76594E51C4B485000A10400 /* Info.plist */,
-				D76594DD1C4B485000A10400 /* LyftTrip.xcdatamodeld */,
+				D76594D61C4B485000A10400 /* AppDelegate.swift */,
 				D76594FC1C4B5EAA00A10400 /* TripDetail.swift */,
 				D76594FE1C4B5EAA00A10400 /* Trip.swift */,
 				D76595171C4C890A00A10400 /* TripManager.swift */,
-				D76595051C4B660400A10400 /* TripSQL.swift */,
 				D76595071C4B734D00A10400 /* TripDao.swift */,
 				D765950B1C4C134200A10400 /* FMDBUtil.swift */,
+				D76595111C4C686000A10400 /* Controllers */,
 				D76595121C4C686C00A10400 /* Views */,
 			);
 			path = LyftTrip;
@@ -345,8 +339,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D765950C1C4C134200A10400 /* FMDBUtil.swift in Sources */,
-				D76594DF1C4B485000A10400 /* LyftTrip.xcdatamodeld in Sources */,
-				D76595061C4B660400A10400 /* TripSQL.swift in Sources */,
 				D76594D91C4B485000A10400 /* TripHistoryController.swift in Sources */,
 				D76595081C4B734D00A10400 /* TripDao.swift in Sources */,
 				D76594D71C4B485000A10400 /* AppDelegate.swift in Sources */,
@@ -560,19 +552,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		D76594DD1C4B485000A10400 /* LyftTrip.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D76594DE1C4B485000A10400 /* LyftTrip.xcdatamodel */,
-			);
-			currentVersion = D76594DE1C4B485000A10400 /* LyftTrip.xcdatamodel */;
-			path = LyftTrip.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = D76594CB1C4B485000A10400 /* Project object */;
 }

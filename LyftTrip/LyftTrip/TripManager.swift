@@ -9,7 +9,6 @@
 import Foundation
 import CoreLocation
 import AddressBook
-import Contacts
 
 protocol TripManagerDelegate {
     func didCreateNewTrip()
