@@ -21,7 +21,7 @@ class TripMemoryDao : TripDao {
     static var idCounter:Int64 = 0
     
     var trips = [Int64:Trip]()
-    func saveTrip( trip:Trip) {
+    func saveTrip(trip:Trip) {
         let id = TripMemoryDao.idCounter++
         trip.id = Int64(id)
         trips[id] = trip

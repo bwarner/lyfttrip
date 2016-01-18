@@ -10,6 +10,5 @@ import UIKit
 
 class ToggleLoggingCell : UITableViewCell {
     @IBOutlet weak var tripLogging: UIView!
-    
     @IBOutlet weak var toggleLogging: UISwitch!
 }

@@ -18,6 +18,7 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
     var dbWrapper = DBWrapper(path: DBWrapper.pathForDatabase())
     var tripDao:TripDao?
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,12 +54,7 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
         setupLocationManager()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    // MARK: - UITableViewDataSource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
        return 2
     }
@@ -107,15 +103,7 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
             }
         }
     }
-    
-    func checkLoggingSwitch() {
-        if (logLocation) {
-            manager?.startUpdatingLocation()
-        }
-        else {
-            manager?.stopUpdatingLocation()
-        }
-    }
+
     
     // MARK: - Actions
     func didToggleLogging(sender:UISwitch) {
@@ -140,44 +128,52 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
         }
     }
     
+    // MARK: - Observers
     func applicationEnteredForeground() {
         setupLocationManager()
         refreshTrips()
     }
     
-    func applicationDidBecomeActiveNotification() {
-        setupLocationManager()
-        refreshTrips()
+    func checkLoggingSwitch() {
+        if (logLocation) {
+            manager?.startUpdatingLocation()
+        }
+        else {
+            manager?.stopUpdatingLocation()
+        }
     }
     
     func showLocationWarning() {
         let alertController = UIAlertController(title: "Can't Access Location Services", message: "Enable Location Services ", preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        alertController.addAction(UIAlertAction(title: "Goto Settings", style: .Default, handler: { (action) -> Void in
             if let settingsURL = NSURL(string:UIApplicationOpenSettingsURLString) {
-            UIApplication.sharedApplication().openURL(settingsURL)
+                dispatch_async(dispatch_get_main_queue()) {
+                    // allow time for alert be dismissed
+                    UIApplication.sharedApplication().openURL(settingsURL)
+                }
             }
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
-            if let settingsURL = NSURL(string:UIApplicationOpenSettingsURLString) {
-                UIApplication.sharedApplication().openURL(settingsURL)
-            }
+            self.tripManager?.reset()
+            self.logLocation = false
+            self.refreshTrips()
         }))
         
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
 
-    }
-    
-    // MARK: TripManagerDelegate methods
-    func didUpdateAuthorizationStatus(manager:CLLocationManager, status:CLAuthorizationStatus) {
-        setupLocationManager()
-    }
-    
+    // MARK: - utility methods
     func refreshTrips() {
         if let tripDao = tripDao {
             trips = tripDao.findAll()
             tableView.reloadData()
         }
+    }
+    
+    // MARK: - TripManagerDelegate methods
+    func didUpdateAuthorizationStatus(manager:CLLocationManager, status:CLAuthorizationStatus) {
+        setupLocationManager()
     }
     
     func didCreateNewTrip() {

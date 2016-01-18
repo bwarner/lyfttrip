@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import AddressBook
+import Contacts
 
 protocol TripManagerDelegate {
     func didCreateNewTrip()
@@ -19,7 +20,7 @@ class TripManager: NSObject, CLLocationManagerDelegate {
     
     static let SPEED_THRESHOLD = 4.4704
     static let DISTANCE_THRESHOLD = 50.0
-    static let TIMEOUT:NSTimeInterval = 10
+    static let TIMEOUT:NSTimeInterval = 60
 
     var currentTrip:Trip?
     let tripDao:TripDao
@@ -37,15 +38,44 @@ class TripManager: NSObject, CLLocationManagerDelegate {
         formatter = NSDateFormatter()
         formatter.dateStyle = .NoStyle
         formatter.timeStyle = .ShortStyle
-
     }
     
+    // MARK: - Location Manager Delegate Methods
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for location in locations {
             updateLocation(manager, location: location)
         }
     }
     
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        if (error.code != 0 ) {
+            NSLog("location error \(error)")
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        NSLog("didChangeAuthorizationStatus \(status)")
+        if let delegate = delegate {
+            if (status != .NotDetermined) {
+                delegate.didUpdateAuthorizationStatus(manager, status: status)
+            }
+            else {
+                NSLog("Unexpected status changed to NotDetermined")
+            }
+        }
+    }
+    
+    func reset() {
+        if let timer = timer {
+            timer.invalidate()
+            self.timer = nil
+        }
+        distanceMoved = 0
+        currentTrip = nil
+    }
+    
+    // MARK - Private implementation
     private func updateLocation(manager: CLLocationManager, location:CLLocation) -> Bool {
         if (currentTrip == nil) {
             if (location.speed >= TripManager.SPEED_THRESHOLD) {
@@ -99,13 +129,7 @@ class TripManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func finish(completion:(Trip)->()) {
-        if let trip = currentTrip {
-            finish(trip, completion: completion)
-        }
-    }
-
-    private func finish(trip:Trip, completion:(Trip)->()) {
+    private func finish( trip:Trip, completion:(Trip)->()) {
         NSLog("Trip finished")
         var duration = "(N/A)"
         var route = "N/A"
@@ -113,17 +137,21 @@ class TripManager: NSObject, CLLocationManagerDelegate {
         if let start = trip.first, end = trip.last {
             let startStr = formatter.stringFromDate(start.timestamp)
             let endStr = formatter.stringFromDate(end.timestamp)
-            let components = TripManager.calendar!.components([.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute], fromDate: start.timestamp, toDate: end.timestamp, options: NSCalendarOptions(rawValue: 0))
+            let components = TripManager.calendar!.components([.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, .Second], fromDate: start.timestamp, toDate: end.timestamp, options: NSCalendarOptions(rawValue: 0))
             var diff = ""
             if components.day == 0 {
                 if (components.hour > 0) {
-                    diff += "(\(components.hour)hrs "
+                    diff += "(\(components.hour) hrs "
                 }
-                diff +=  "\(components.minute)min"
+                if components.minute > 0 {
+                    diff +=  "\(components.minute) min"
+                }
+                if components.second > 0 {
+                    diff +=  "\(components.second) sec"
+                }
                 duration = NSString(format: "%@-%@ (%@)", startStr, endStr, diff) as String
             }
-            
-            
+                        
             var startAddress = "N/A"
             var endAddress = "N/A"
 
@@ -133,7 +161,7 @@ class TripManager: NSObject, CLLocationManagerDelegate {
                         startAddress = street
                     }
                 }
-                self.geoCoder.reverseGeocodeLocation(start) { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
+                self.geoCoder.reverseGeocodeLocation(end) { (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
                     if error == nil {
                         if let placemark = placemarks?.first, addressDictionary = placemark.addressDictionary, street = addressDictionary[kABPersonAddressStreetKey] as? String {
                             endAddress = street
@@ -149,22 +177,5 @@ class TripManager: NSObject, CLLocationManagerDelegate {
             }
         }        
     }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        if (error.code != 0 ) {
-            NSLog("location error \(error)")
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        NSLog("didChangeAuthorizationStatus \(status)")
-        if let delegate = delegate {
-            if (status != .NotDetermined) {
-                delegate.didUpdateAuthorizationStatus(manager, status: status)
-            }
-            else {
-                NSLog("Unexpected status changed to NotDetermined")
-            }
-        }
-    }
+
 }

@@ -10,7 +10,7 @@ import Foundation
 import FMDB
 import CoreLocation
 
-struct Trip {
+class Trip {
     var route: String?
     var duration: String?
     var startDate: NSDate?

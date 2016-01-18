@@ -12,10 +12,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navbar" translatesAutoresizingMaskIntoConstraints="NO" id="dEB-H8-Sv8">
-                    <rect key="frame" x="214" y="30" width="213" height="29"/>
+                    <rect key="frame" x="160" y="28" width="320" height="34"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="29" id="0jQ-5j-8jZ"/>
-                        <constraint firstAttribute="width" constant="213" id="j6Q-yW-5Nm"/>
+                        <constraint firstAttribute="height" constant="34" id="0jQ-5j-8jZ"/>
+                        <constraint firstAttribute="width" constant="320" id="j6Q-yW-5Nm"/>
                     </constraints>
                 </imageView>
             </subviews>
