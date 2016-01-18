@@ -18,7 +18,7 @@ class Trip {
     var route: String?
     var duration: String?
     var startDate: NSDate?
-    var id:Int?
+    var id:Int64?
     var details = [TripDetail]()
     var first:CLLocation?
     var last:CLLocation?

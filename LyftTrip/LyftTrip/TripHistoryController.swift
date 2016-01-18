@@ -11,29 +11,39 @@ import CoreLocation
 
 class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocationManagerDelegate  {
 
-    var tripDao:TripDao = TripMemoryDao()
     var trips:[Trip]?
     var logLocation:Bool = false
     var manager:CLLocationManager?
     var tripManager:TripManager?
     var lastAuthorizationStatus:CLAuthorizationStatus?
+    var dbWrapper = DBWrapper(path: DBWrapper.pathForDatabase())
+    var tripDao:TripDao?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.titleView = TripHistoryTitleView(frame: CGRectMake(0,0, 640/2, 89/2))
-        manager = CLLocationManager()
-        tripManager = TripManager(tripDao: tripDao)
+        if let wrapper = dbWrapper {
+            tripDao = FMDBTripDao(wrapper: wrapper)
+//            tripDao = TripMemoryDao()
+            tripManager = TripManager(tripDao: tripDao!)
+            manager = CLLocationManager()
+
         if let tripManager = tripManager {
             tripManager.delegate = self
             manager?.delegate = tripManager
         }
         manager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         manager?.distanceFilter = 10
+        }
         NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector("applicationEnteredForeground"), name:UIApplicationWillEnterForegroundNotification, object:nil);
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector("applicationDidBecomeActiveNotification"), name:UIApplicationDidBecomeActiveNotification, object:nil);
 
-        trips = tripDao.findAll()
+        if let tripDao = tripDao  {
+            trips = tripDao.findAll()
+        }
+        else {
+            trips = [Trip]()
+        }
     }
     
     override func viewWillDisappear(animated:Bool) {
@@ -81,6 +91,21 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
                 tripCell.detailTextLabel!.text = trip.duration ?? "No Duration"
             }
             return cell!
+        }
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            if let tripDao = tripDao, trips = trips  {
+               let trip = trips[indexPath.row]
+                do  {
+                    try tripDao.delete(trip)
+                    refreshTrips()
+                }
+                catch {
+                    NSLog("Could not delete trip")
+                }
+            }
         }
     }
     
@@ -155,8 +180,10 @@ class TripHistoryController: UITableViewController, TripManagerDelegate, CLLocat
     }
     
     func refreshTrips() {
-        trips = tripDao.findAll()
-        tableView.reloadData()
+        if let tripDao = tripDao {
+            trips = tripDao.findAll()
+            tableView.reloadData()
+        }
     }
     
     func didCreateNewTrip() {

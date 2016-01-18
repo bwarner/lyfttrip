@@ -20,7 +20,7 @@ class TripManager: NSObject, CLLocationManagerDelegate {
     
     static let SPEED_THRESHOLD = 4.4704
     static let DISTANCE_THRESHOLD = 50.0
-    static let TIMEOUT:NSTimeInterval = 120
+    static let TIMEOUT:NSTimeInterval = 10
 
     var currentTrip:Trip?
     let tripDao:TripDao
@@ -91,6 +91,7 @@ class TripManager: NSObject, CLLocationManagerDelegate {
     }
     
      func timeout() {
+        NSLog("Standing still timer triggered")
         if let currentTrip = currentTrip  {
             timer = nil
             finish(currentTrip) { (trip) in
@@ -142,7 +143,7 @@ class TripManager: NSObject, CLLocationManagerDelegate {
                     route = NSString(format: "%@ > %@", startAddress, endAddress) as String
                     trip.route = route
                     trip.duration = duration
-                    self.tripDao.saveTrip(trip)
+                    try! self.tripDao.saveTrip(trip)
                     self.currentTrip = nil
                     completion(trip)
                 }

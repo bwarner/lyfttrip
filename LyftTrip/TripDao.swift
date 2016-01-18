@@ -10,27 +10,32 @@ import Foundation
 
 
 protocol TripDao {
-    func saveTrip(trip:Trip)
-    func findTrip(id:Int) -> Trip?
+    func saveTrip(trip:Trip) throws
+    func delete(trip:Trip) throws
     func findAll() -> [Trip]
 }
 
 
 class TripMemoryDao : TripDao {
-    static var idCounter = 0
+    static var idCounter:Int64 = 0
     
-    var trips = [Int:Trip]()
-    func saveTrip(var trip:Trip) {
+    var trips = [Int64:Trip]()
+    func saveTrip( trip:Trip) {
         let id = TripMemoryDao.idCounter++
-        trip.id = id
+        trip.id = Int64(id)
         trips[id] = trip
     }
     
-    func findTrip(id:Int) -> Trip? {
+    func findTrip(id:Int64) -> Trip? {
         return trips[id]
     }
     
-    //: TODO sort trips
+    func delete(trip:Trip) {
+        if let key = trip.id {
+            trips.removeValueForKey(key)
+        }
+    }
+
     func findAll() -> [Trip] {
         return [Trip](trips.values)
     }
