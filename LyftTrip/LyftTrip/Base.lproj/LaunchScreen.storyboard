@@ -14,11 +14,11 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mcr-eL-bVC">
-                                <rect key="frame" x="211" y="185" width="178" height="170"/>
+                                <rect key="frame" x="71" y="169" width="178" height="170"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lyft-logo" translatesAutoresizingMaskIntoConstraints="NO" id="tpi-8l-E68">
                                         <rect key="frame" x="0.0" y="0.0" width="178" height="129"/>
@@ -31,10 +31,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Mcr-eL-bVC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aep-8I-8am"/>
-                            <constraint firstItem="Mcr-eL-bVC" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-30" id="iVd-22-W0q"/>
+                            <constraint firstItem="Mcr-eL-bVC" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="149" id="7T4-DC-ica"/>
+                            <constraint firstItem="Mcr-eL-bVC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nS0-uw-SkW"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,7 @@ use_frameworks!
 
 target 'LyftTrip' do
   pod 'FMDB'
+  pod 'Reveal-iOS-SDK', '~> 1.6.2'
 end
 
 target 'LyftTripTests' do

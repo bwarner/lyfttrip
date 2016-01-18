@@ -2,11 +2,14 @@ PODS:
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
+  - Reveal-iOS-SDK (1.6.2)
 
 DEPENDENCIES:
   - FMDB
+  - Reveal-iOS-SDK (~> 1.6.2)
 
 SPEC CHECKSUMS:
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
 
 COCOAPODS: 0.38.2

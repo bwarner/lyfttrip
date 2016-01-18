@@ -22,6 +22,13 @@
 		D76595081C4B734D00A10400 /* TripDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76595071C4B734D00A10400 /* TripDao.swift */; };
 		D765950C1C4C134200A10400 /* FMDBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D765950B1C4C134200A10400 /* FMDBUtil.swift */; };
 		D765950E1C4C483800A10400 /* TripDaoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D765950D1C4C483800A10400 /* TripDaoTests.swift */; };
+		D76595101C4C656D00A10400 /* ToggleLoggingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D765950F1C4C656D00A10400 /* ToggleLoggingCell.swift */; };
+		D76595141C4C732500A10400 /* TripHistoryTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D76595131C4C732500A10400 /* TripHistoryTitleView.xib */; };
+		D76595161C4C787300A10400 /* TripHistoryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76595151C4C787300A10400 /* TripHistoryTitleView.swift */; };
+		D76595181C4C890A00A10400 /* TripManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76595171C4C890A00A10400 /* TripManager.swift */; };
+		D765951A1C4C8B1500A10400 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76595191C4C8B1500A10400 /* CoreLocation.framework */; };
+		D765951C1C4D0B3C00A10400 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D765951B1C4D0B3C00A10400 /* AddressBook.framework */; };
+		D765951E1C4D0C5900A10400 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D765951D1C4D0C5900A10400 /* Contacts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +63,13 @@
 		D76595091C4B738F00A10400 /* LyftTrip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LyftTrip-Bridging-Header.h"; sourceTree = "<group>"; };
 		D765950B1C4C134200A10400 /* FMDBUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDBUtil.swift; sourceTree = "<group>"; };
 		D765950D1C4C483800A10400 /* TripDaoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDaoTests.swift; sourceTree = "<group>"; };
+		D765950F1C4C656D00A10400 /* ToggleLoggingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleLoggingCell.swift; sourceTree = "<group>"; };
+		D76595131C4C732500A10400 /* TripHistoryTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripHistoryTitleView.xib; sourceTree = "<group>"; };
+		D76595151C4C787300A10400 /* TripHistoryTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHistoryTitleView.swift; sourceTree = "<group>"; };
+		D76595171C4C890A00A10400 /* TripManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripManager.swift; sourceTree = "<group>"; };
+		D76595191C4C8B1500A10400 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D765951B1C4D0B3C00A10400 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		D765951D1C4D0C5900A10400 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		E439CF0533951D4847EB7BE0 /* Pods-LyftTrip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LyftTrip.release.xcconfig"; path = "../Pods/Target Support Files/Pods-LyftTrip/Pods-LyftTrip.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D765951E1C4D0C5900A10400 /* Contacts.framework in Frameworks */,
+				D765951C1C4D0B3C00A10400 /* AddressBook.framework in Frameworks */,
+				D765951A1C4C8B1500A10400 /* CoreLocation.framework in Frameworks */,
 				6523F45CE6378C2C8A2FDAC3 /* Pods_LyftTrip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,19 +118,21 @@
 		D76594D51C4B485000A10400 /* LyftTrip */ = {
 			isa = PBXGroup;
 			children = (
-				D76595071C4B734D00A10400 /* TripDao.swift */,
 				D76595091C4B738F00A10400 /* LyftTrip-Bridging-Header.h */,
 				D76594D61C4B485000A10400 /* AppDelegate.swift */,
-				D76594D81C4B485000A10400 /* TripHistoryController.swift */,
+				D76595111C4C686000A10400 /* Controllers */,
 				D76594DA1C4B485000A10400 /* Main.storyboard */,
-				D76594E01C4B485000A10400 /* Assets.xcassets */,
 				D76594E21C4B485000A10400 /* LaunchScreen.storyboard */,
+				D76594E01C4B485000A10400 /* Assets.xcassets */,
 				D76594E51C4B485000A10400 /* Info.plist */,
 				D76594DD1C4B485000A10400 /* LyftTrip.xcdatamodeld */,
 				D76594FC1C4B5EAA00A10400 /* TripDetail.swift */,
 				D76594FE1C4B5EAA00A10400 /* Trip.swift */,
+				D76595171C4C890A00A10400 /* TripManager.swift */,
 				D76595051C4B660400A10400 /* TripSQL.swift */,
+				D76595071C4B734D00A10400 /* TripDao.swift */,
 				D765950B1C4C134200A10400 /* FMDBUtil.swift */,
+				D76595121C4C686C00A10400 /* Views */,
 			);
 			path = LyftTrip;
 			sourceTree = "<group>";
@@ -129,6 +148,24 @@
 			path = LyftTripTests;
 			sourceTree = "<group>";
 		};
+		D76595111C4C686000A10400 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D76594D81C4B485000A10400 /* TripHistoryController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D76595121C4C686C00A10400 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D765950F1C4C656D00A10400 /* ToggleLoggingCell.swift */,
+				D76595131C4C732500A10400 /* TripHistoryTitleView.xib */,
+				D76595151C4C787300A10400 /* TripHistoryTitleView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		DF5631CE3A94C4C22FA785DC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +178,9 @@
 		E3B15AEFC3C60C9BB77935CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D765951D1C4D0C5900A10400 /* Contacts.framework */,
+				D765951B1C4D0B3C00A10400 /* AddressBook.framework */,
+				D76595191C4C8B1500A10400 /* CoreLocation.framework */,
 				D3BE6A3B618ACAB538ADDA2F /* Pods_LyftTrip.framework */,
 			);
 			name = Frameworks;
@@ -199,6 +239,11 @@
 				TargetAttributes = {
 					D76594D21C4B485000A10400 = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					D76594E91C4B485000A10400 = {
 						CreatedOnToolsVersion = 7.2;
@@ -233,6 +278,7 @@
 				D76594E41C4B485000A10400 /* LaunchScreen.storyboard in Resources */,
 				D76594E11C4B485000A10400 /* Assets.xcassets in Resources */,
 				D76594DC1C4B485000A10400 /* Main.storyboard in Resources */,
+				D76595141C4C732500A10400 /* TripHistoryTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +351,10 @@
 				D76595081C4B734D00A10400 /* TripDao.swift in Sources */,
 				D76594D71C4B485000A10400 /* AppDelegate.swift in Sources */,
 				D76595021C4B5EAA00A10400 /* Trip.swift in Sources */,
+				D76595101C4C656D00A10400 /* ToggleLoggingCell.swift in Sources */,
 				D76595001C4B5EAA00A10400 /* TripDetail.swift in Sources */,
+				D76595181C4C890A00A10400 /* TripManager.swift in Sources */,
+				D76595161C4C787300A10400 /* TripHistoryTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
